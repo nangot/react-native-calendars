@@ -82,9 +82,9 @@ class Calendar extends Component {
 
   constructor(props) {
     super(props);
-    
+
     this.style = styleConstructor(this.props.theme);
-    
+
     this.state = {
       currentMonth: props.current ? parseDate(props.current) : XDate()
     };
@@ -96,7 +96,7 @@ class Calendar extends Component {
     this.shouldComponentUpdate = shouldComponentUpdate;
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const current = parseDate(nextProps.current);
     if (current && current.toString('yyyy MM') !== this.state.currentMonth.toString('yyyy MM')) {
       this.setState({
@@ -245,7 +245,7 @@ class Calendar extends Component {
     while (days.length) {
       weeks.push(this.renderWeek(days.splice(0, 7), weeks.length));
     }
-    
+
     let indicator;
     const current = parseDate(this.props.current);
     if (current) {
